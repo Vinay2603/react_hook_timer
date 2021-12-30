@@ -1,29 +1,35 @@
 import { useEffect, useState } from "react"
 
-export const Timer =()=>{
-    const [data, setData] =useState({
-        start:"",
-        end:""
-    })
+export const Wtimer =()=>{
+   
    var [counter,setCounter]= useState()
-
+   var [end ,setEnd] = useState()
     const handlevalue =(e)=>{
      console.log(e.target.value)
-      const {name, value} = e.target
-      setData({...data,[name]:value})
+     var q = Number(e.target.value)
+       
+
+      setCounter(q)
     }
 
-    const handleboth=(e)=>{
-        e.preventDefault()
-        console.log('data:', data)
-        counter = data
+    const handleEnd=(e)=>{
+     
+       console.log("end",e.target.value)
+     var w = Number(e.target.value)
+       
+
+      setEnd(w)
     }
+   
 
    useEffect(()=>{
+       console.log("rerender")
+       
     const id=   setInterval(()=>{
            setCounter((p)=>{
-               if(p !== 20 ){
-                 return  p+1
+            
+               if(p < 20 ){
+                 return  p +1
                }else{
                    clearInterval(id)
                    return p
@@ -34,24 +40,21 @@ export const Timer =()=>{
         console.log("mounting ")
         clearInterval(id)
     }
-   },[])
-
+   },[counter])
 
     return <div>
-    <form onSubmit={handleboth}>
+    
         <label > Start Time: </label>
         <input  type="number" name="start" placeholder="start time" onChange={handlevalue}/>
+        
         <br/>
         <label > Last Time: </label>
-        <input type="number" name="end" placeholder="end time" onChange={handlevalue}/>
-        <br/>
-        <input type="submit" />
-    </form>
-
+        <input type="number" name="end" placeholder="end time" onChange={handleEnd} />
        
+        <br/>
         
         
         <h1>Timer</h1>
-        <h2>{data.start === undefined ? 0:data.start} sec</h2>
+        <h2>{counter === undefined ?0:counter} sec</h2>
     </div>
 }
