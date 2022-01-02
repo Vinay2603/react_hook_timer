@@ -30,7 +30,7 @@ const timerRef = useRef()
        timerRef.current =   setInterval(()=>{
            setCounter((p)=>{
             
-               if(p < 50 ){
+               if(p < 20 ){
                  return  p +1
                }else if(p === {end}){ 
                  clearInterval(timerRef.current )
