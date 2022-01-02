@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 export const Wtimer =()=>{
    
    var [counter,setCounter]= useState()
    var [end ,setEnd] = useState()
+const timerRef = useRef()
+    
     const handlevalue =(e)=>{
      console.log(e.target.value)
      var q = Number(e.target.value)
@@ -15,30 +17,33 @@ export const Wtimer =()=>{
     const handleEnd=(e)=>{
      
        console.log("end",e.target.value)
-     var w = Number(e.target.value)
+     var end = Number(e.target.value)
        
-
-      setEnd(w)
+      
+      setEnd(end)
     }
    
 
    useEffect(()=>{
        console.log("rerender")
        
-    const id=   setInterval(()=>{
+       timerRef.current =   setInterval(()=>{
            setCounter((p)=>{
             
-               if(p < 20 ){
+               if(p < 50 ){
                  return  p +1
-               }else{
-                   clearInterval(id)
+               }else if(p === {end}){ 
+                 clearInterval(timerRef.current )
+                 }else{
+                   clearInterval(timerRef.current )
                    return p
                }
+               
            })
        },1000);
        return()=>{
         console.log("mounting ")
-        clearInterval(id)
+        clearInterval(timerRef.current )
     }
    },[counter])
 
