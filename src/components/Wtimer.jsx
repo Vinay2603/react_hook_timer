@@ -42,7 +42,7 @@ const timerRef = useRef()
            })
        },1000);
        return()=>{
-        console.log("mounting ")
+        console.log("mounting")
         clearInterval(timerRef.current )
     }
    },[counter])
